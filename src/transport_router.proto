@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package catalogue_serialize;
+
+message Edge {
+	uint64 vertex_from = 1;
+	uint64 vertex_to = 2;
+	double weight = 3;
+}
+
+message InternalData {
+    double weight = 1;
+	oneof test {
+		uint64 id = 2;
+		bool opt = 3;
+	}
+}
+
+message Data {
+    uint64 line = 1;
+	oneof test {
+		InternalData data = 2;
+		bool nll = 3;
+	}
+}
+
+message RouteInfo {
+	string type = 1;
+	string name = 2;
+	int32 count = 3;
+	double time = 4;	
+}
+
+message Router {
+	uint64 vertex_count = 1;
+	repeated Edge graph = 2;
+	repeated Data router = 3;
+	repeated RouteInfo info = 4;
+}

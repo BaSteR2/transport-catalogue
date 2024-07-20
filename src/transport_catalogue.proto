@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package catalogue_serialize;
+
+import "map_renderer.proto";
+import "transport_router.proto";
+
+message Stop {
+    string name = 1;
+    double lati = 2;
+    double longi = 3;
+    uint64 vertex = 4;
+}
+
+message Bus {
+    repeated string names = 1;
+    bool is_round = 2;
+}
+
+message Info {
+    string name = 1;
+    uint32 distance = 2;
+}
+
+message Distance {
+    string name = 1;
+    repeated Info distance_to = 2;
+}
+
+message Catalogue {   
+    repeated Stop stops = 1;
+    repeated Bus buses = 2;
+    repeated Distance distances = 3;
+} 
+
+message TransportCatalogue {
+    Catalogue catalogue = 1;
+    Renderer renderer = 2;
+    Router router = 3;
+}
